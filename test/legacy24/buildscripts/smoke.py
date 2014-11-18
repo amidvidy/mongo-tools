@@ -204,7 +204,7 @@ class mongod(object):
         argv = [mongod_executable, "--port", str(self.port), "--dbpath", dir_name]
         # These parameters are alwas set for tests
         # SERVER-9137 Added httpinterface parameter to keep previous behavior
-        argv += ['--setParameter', 'enableTestCommands=1', '--httpinterface']
+        argv += ['--setParameter', 'enableTestCommands=1']
         if self.kwargs.get('small_oplog'):
             argv += ["--master", "--oplogSize", "511"]
         params = self.kwargs.get('set_parameters', None)
@@ -484,7 +484,7 @@ def runTest(test, result):
     elif ext == ".js":
         argv = [shell_executable, "--port", mongod_port, '--authenticationMechanism', authMechanism]
         
-        setShellWriteModeForTest(path, argv)
+        #setShellWriteModeForTest(path, argv)
         
         if not usedb:
             argv += ["--nodb"]
